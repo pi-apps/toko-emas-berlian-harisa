@@ -1,4 +1,4 @@
-hu# PT. GOLDEN DIAMOND HARISA
+# PT. GOLDEN DIAMOND HARISA
 
 ### Description
 HARISA JEWELLERY Repository. An application in the Pi Ecosystem that can be used to become a Market Place.
