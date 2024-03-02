@@ -105,19 +105,19 @@ if($meta['Src']=='GDH'){
         
         foreach($order as $x => $val) {
         
-          $qry= mysql_fetch_assoc(mysql_query("select a.*,b.NoSeri AS Seri, (a.Harga / 15000 / b.NilaiPi)  AS Harga_Pi, (a.Harga / 15000 / b.NilaiPi) + (a.Harga / 15000 / b.NilaiPi) * ".GASFEE."  AS Hrg from ".APP_DATABASE.".t_seller_product a, ".APP_DATABASE.".t_seller b  WHERE b.UserName=a.UserName AND a.ID='{$val['id']}' LIMIT 1"));
+          $qry= mysql_fetch_assoc(mysql_query("select a.*,b.NoSeri AS Seri, (a.Harga / 15000 / b.NilaiPi)  AS Harga_Pi from ".APP_DATABASE.".t_seller_product a, ".APP_DATABASE.".t_seller b  WHERE b.UserName=a.UserName AND a.ID='{$val['id']}' LIMIT 1"));
 
           mysql_query("UPDATE ".APP_DATABASE.".t_seller_product SET Tgl_Buy=CURRENT_TIMESTAMP WHERE ID='{$val['id']}' LIMIT 1");
 
-          $harga = floatval($qry['Hrg']);
+          
           $harga_pi =  $qry['Harga_Pi'] ; 
         
           $jml = floatval( $val['jml'] );
-          $ttl +=  $jml * floatval( $harga );
+          $ttl +=  $jml * floatval( $harga_pi );
           $ttl_pi +=  $jml * floatval( $harga_pi );
           
          
-          mysql_query("INSERT INTO ".APP_DATABASE.".$tbl_detail (TrxID,ProductID,Seller, Jml,  Harga, Total_pi) VALUES('{$id_trx}','{$val['id']}','{$qry['Seri']}','{$jml}','{$harga}','{$harga_pi}')");
+          mysql_query("INSERT INTO ".APP_DATABASE.".$tbl_detail (TrxID,ProductID,Seller, Jml,  Harga, Total_pi) VALUES('{$id_trx}','{$val['id']}','{$qry['Seri']}','{$jml}','{$harga_pi}','{$harga_pi}')");
 
         }
         $ttl= send_satoshi($ttl);          
