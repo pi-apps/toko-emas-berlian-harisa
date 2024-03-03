@@ -3,8 +3,8 @@
 
     define('TOP_DIR', PARENT_DIR);
 
-    define('GLOBAL_ASSET', dirname(dirname(dirname(__FILE__))). PHP_DS."global_assets"  );
-    define('ROOT_SYSTEM',  dirname(dirname(dirname(__FILE__))). PHP_DS."global_assets". PHP_DS."system6" );
+    define('GLOBAL_ASSET', GLOBAL_SYSTEM . PHP_DS."global_assets"  );
+    define('ROOT_SYSTEM',  GLOBAL_SYSTEM . PHP_DS."global_assets". PHP_DS."system6" );
     define('LOKAL_DIR', dirname(__FILE__). PHP_DS. "src" );
 
     require GLOBAL_ASSET. PHP_DS . "include". PHP_DS ."init.php";
